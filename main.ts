@@ -4,16 +4,16 @@ enum PingUnit {
     Centimeters,
 }
 
-export enum Patrol {
-    //% blockId="patrolLeft" block="left"
-    PatrolLeft = 2,
-    //% blockId="patrolRight" block="right"
-    PatrolRight = 1
-}
 
 //% weight=0 color=#00BFFF icon="\uf2c4" block="Qcar"
 namespace qcar {
 
+    export enum Patrol {
+        //% blockId="patrolLeft" block="left"
+        PatrolLeft = 2,
+        //% blockId="patrolRight" block="right"
+        PatrolRight = 1
+    }
 
     /**
      * Read ultrasonic sensor.
