@@ -61,9 +61,9 @@ namespace qcar {
     //% patrol.fieldEditor="gridpicker" patrol.fieldOptions.columns=2 
     export function readPatrol(patrol: Patrol): number {
         if (patrol == Patrol.PatrolLeft) {
-            return pins.digitalReadPin(DigitalPin.P11)
+            return pins.analogReadPin(AnalogPin.P11)
         } else if (patrol == Patrol.PatrolRight) {
-            return pins.digitalReadPin(DigitalPin.P5)
+            return pins.analogReadPin(AnalogPin.P5)
         } else {
             return -1
         }
