@@ -63,7 +63,7 @@ namespace qcar {
         if (patrol == Patrol.PatrolLeft) {
             return pins.digitalReadPin(DigitalPin.P11)
         } else if (patrol == Patrol.PatrolRight) {
-            return pins.digitalReadPin(DigitalPin.P15)
+            return pins.digitalReadPin(DigitalPin.P5)
         } else {
             return -1
         }
