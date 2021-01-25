@@ -1,4 +1,6 @@
 
+let qcarparam = 0
+let qcarparam1 = 1
 enum PingUnit {
     //% block="cm"
     Centimeters,
@@ -59,9 +61,9 @@ namespace qcar {
     //% patrol.fieldEditor="gridpicker" patrol.fieldOptions.columns=2 
     export function readPatrol(patrol: Patrol): number {
         if (patrol == Patrol.PatrolLeft) {
-            return pins.digitalReadPin(AnalogPin.P2)
+            return qcarparam
         } else if (patrol == Patrol.PatrolRight) {
-            return pins.digitalReadPin(AnalogPin.P1)
+            return qcarparam1
         } else {
             return -1
         }
