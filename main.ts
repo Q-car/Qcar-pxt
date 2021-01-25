@@ -52,21 +52,5 @@ namespace qcar {
     }
 
 
-     /**
-     * Read line tracking sensor.
-     */
-
-    //% weight=20
-    //% blockId=read_Patrol block="read |%patrol line tracking sensor"
-    //% patrol.fieldEditor="gridpicker" patrol.fieldOptions.columns=2 
-    export function readPatrol(patrol: Patrol): number {
-        if (patrol == Patrol.PatrolLeft) {
-            return qcarparam
-        } else if (patrol == Patrol.PatrolRight) {
-            return qcarparam1
-        } else {
-            return -1
-        }
-    }
 
 }
