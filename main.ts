@@ -4,12 +4,6 @@ enum PingUnit {
     Centimeters,
 }
 
-export enum Patrol {
-    //% blockId="patrolLeft" block="left"
-    PatrolLeft = 2,
-    //% blockId="patrolRight" block="right"
-    PatrolRight = 1
-}
 
 //% weight=0 color=#00BFFF icon="\uf2c4" block="Qcar"
 namespace qcar {
@@ -50,21 +44,6 @@ namespace qcar {
     }
 
 
-     /**
-     * Read line tracking sensor.
-     */
 
-    //% weight=20
-    //% blockId=read_Patrol block="read |%patrol line tracking sensor"
-    //% patrol.fieldEditor="gridpicker" patrol.fieldOptions.columns=2 
-    export function readPatrol(patrol: Patrol): number {
-        if (patrol == Patrol.PatrolLeft) {
-            return pins.digitalReadPin(DigitalPin.P2)
-        } else if (patrol == Patrol.PatrolRight) {
-            return pins.digitalReadPin(DigitalPin.P1)
-        } else {
-            return -1
-        }
-    }
 
 }
