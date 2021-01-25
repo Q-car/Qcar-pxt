@@ -1,0 +1,15 @@
+{
+    "name": "Qcar",
+    "version": "0.0.1",
+    "description": "Affordable mini Car designed by BananaPi",
+    "license": "MIT",
+    "dependencies": {
+        "core": "*"
+    },
+    "files": [
+        "README.md",
+        "main.ts",
+        "_locales/zh-cn/qcar-strings.json"
+    ],
+    "public": true
+}
