@@ -89,7 +89,7 @@ namespace qcar {
      */
 
     //% weight=20
-    //% blockId=writeLED block="LEDlight |%led turn |%ledswitch"
+    //% blockId=writeLED block="LEDlight turn |%ledswitch"
     //% led.fieldEditor="gridpicker" led.fieldOptions.columns=2 
     //% ledswitch.fieldEditor="gridpicker" ledswitch.fieldOptions.columns=2
     export function writeLED(ledswitch: LEDswitch): void {
