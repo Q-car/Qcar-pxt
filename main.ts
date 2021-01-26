@@ -78,25 +78,6 @@ namespace qcar {
 
 
     /**
-     * Enable IR LED.
-     */
-
-    //% blockId=IR_Enable block="Set the infrared status to |%irstatus"
-    //% irstatus.fieldEditor="gridpicker" irstatus.fieldOptions.columns=2 
-    //% weight=93 blockGap=8
-
-    irstatus(irstatus: irstatus): void {
-        if (irstatus == irstatus.iron) {
-            pins.digitalWritePin(DigitalPin.P14, 1)
-        } else if (irstatus == irstatus.iroff) {
-            pins.digitalWritePin(DigitalPin.P14, 0)
-        } else {
-            return -1
-        }
-    }
-
-
-    /**
      * Turn high power outputs on and off
      * @param pin which high power output pin to control
      * @param output is the boolean output of the pin, either ON or OFF
@@ -104,10 +85,10 @@ namespace qcar {
      */
     //% subcategory="Inputs/Outputs"
     //% blockId=kitronik_environmental_board_high_power_on_off 
-    //% block="turn high power %pin|%output=on_off_toggle
+    //% block="turn high power %output=on_off_toggle
     //% expandableArgumentMode="toggle"
     //% weight=80 blockGap=8
-    export function controlHighPowerPin(pin: kitronik_smart_greenhouse.HighPowerPins, output: boolean,): void {
+    export function irstatus(output: boolean,): void {
         if (output == true) {
             pins.digitalWritePin(DigitalPin.P14, 1)
         }
