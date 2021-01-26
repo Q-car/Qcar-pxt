@@ -78,6 +78,24 @@ namespace qcar {
 
 
     /**
+     * Turn on/off the LEDs.
+     */
+
+    //% weight=20
+    //% blockId=writeLED block="LEDlight |%led turn |%ledswitch"
+    //% led.fieldEditor="gridpicker" led.fieldOptions.columns=2 
+    //% ledswitch.fieldEditor="gridpicker" ledswitch.fieldOptions.columns=2
+    export function writeLED(led: LED, ledswitch: LEDswitch): void {
+        if (led == LED.LEDLeft) {
+            pins.digitalWritePin(DigitalPin.P8, ledswitch)
+        } else if (led == LED.LEDRight) {
+            pins.digitalWritePin(DigitalPin.P12, ledswitch)
+        } else {
+            return
+        }
+    }
+
+    /**
      * Turn high power outputs on and off
      * @param pin which high power output pin to control
      * @param output is the boolean output of the pin, either ON or OFF
