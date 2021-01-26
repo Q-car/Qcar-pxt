@@ -9,7 +9,7 @@
     "qcar.Voltage.Low|block":"低",
     "qcar.ltEvent|block":"当|%value巡线传感器|%vi",
     "qcar.readPatrol|block": "巡线传感器|%patrol",
-    "qcar.irstatus|block": "将红外设置为|%output",
+    "qcar.IREnable|block": "将红外设置为|%output",
     "qcar.irstatus.iron|block": "开启",
     "qcar.irstatus.iroff|block": "关闭",
     "qcar.writeLED|block": "将LED灯|%ledswitch",
