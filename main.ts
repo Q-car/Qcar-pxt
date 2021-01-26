@@ -81,9 +81,10 @@ namespace qcar {
      * Enable IR LED.
      */
 
-    //% weight=20
     //% blockId=IR_Enable block="Set the infrared status to |%irstatus"
     //% irstatus.fieldEditor="gridpicker" irstatus.fieldOptions.columns=2 
+    //% weight=93 blockGap=8
+
     export function IREnable(irstatus: irstatus): number {
         if (irstatus == irstatus.iron) {
             pins.digitalWritePin(DigitalPin.P14, 1)
