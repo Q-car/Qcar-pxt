@@ -15,6 +15,4 @@
     "qcar.writeLED|block": "将LED灯|%ledswitch",
     "qcar.LEDswitch.turnOn|block": "打开",
     "qcar.LEDswitch.turnOff|block": "关闭",
-    "qcar.LED.LEDLeft|block": "左侧",
-    "qcar.LED.LEDRight|block": "右侧",
 }
