@@ -17,13 +17,12 @@ namespace qcar {
         PatrolRight = 1
     }
 
-    export enum irstatus {
-        //% blockId="iron" block="on"
-        iron = 1,
-        //% blockId="iroff" block="off"
-        iroff = 2
+    export enum LEDswitch {
+        //% blockId="turnOn" block="ON"
+        turnOn = 1,
+        //% blockId="turnOff" block="OFF"
+        turnOff = 0
     }
-
 
     /**
      * Read ultrasonic sensor.
