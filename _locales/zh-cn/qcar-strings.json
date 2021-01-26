@@ -12,5 +12,5 @@
     "qcar.irstatus|block": "将红外设置为|%output",
     "qcar.irstatus.iron|block": "开启",
     "qcar.irstatus.iroff|block": "关闭",
-    "maqueen.writeLED|block": "LED灯|%led|%ledswitch",
+    "qcar.writeLED|block": "LED灯|%led|%ledswitch",
 }
