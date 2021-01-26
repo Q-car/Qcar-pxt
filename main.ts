@@ -85,7 +85,7 @@ namespace qcar {
     //% irstatus.fieldEditor="gridpicker" irstatus.fieldOptions.columns=2 
     //% weight=93 blockGap=8
 
-    IREnable(irstatus: irstatus): number {
+    irstatus(irstatus: irstatus): number {
         if (irstatus == irstatus.iron) {
             pins.digitalWritePin(DigitalPin.P14, 1)
         } else if (irstatus == irstatus.iroff) {
