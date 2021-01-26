@@ -12,7 +12,4 @@
     "qcar.IREnable|block": "将红外设置为|%output",
     "qcar.irstatus.iron|block": "开启",
     "qcar.irstatus.iroff|block": "关闭",
-    "qcar.writeLED|block": "将LED灯|%ledswitch",
-    "qcar.LEDswitch.turnOn|block": "打开",
-    "qcar.LEDswitch.turnOff|block": "关闭",
 }
