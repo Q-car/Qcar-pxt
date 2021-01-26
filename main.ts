@@ -94,14 +94,27 @@ namespace qcar {
             return -1
         }
     }
+
+
     /**
-    * Turn off all the ZIP LEDs.
-    * You need to call ``show`` to make the changes visible.
-    */
-    //% subcategory="ZIP LEDs"
-    //% blockId="kitronik_smart_greenhouse_display_clear" block="%zipLEDs|clear"
-    //% weight=93 blockGap=8
-    clear(): void {
-        this.buf.fill(0, this.start * 3, this._length * 3);
+     * Turn high power outputs on and off
+     * @param pin which high power output pin to control
+     * @param output is the boolean output of the pin, either ON or OFF
+     * @param power is an optional parameter to set the power output for the pin eg: 100
+     */
+    //% subcategory="Inputs/Outputs"
+    //% blockId=kitronik_environmental_board_high_power_on_off 
+    //% block="turn high power %pin|%output=on_off_toggle
+    //% expandableArgumentMode="toggle"
+    //% weight=80 blockGap=8
+    export function controlHighPowerPin(pin: kitronik_smart_greenhouse.HighPowerPins, output: boolean,): void {
+        if (output == true) {
+            pins.digitalWritePin(DigitalPin.P14, 1)
+        }
+        else {
+            pins.digitalWritePin(DigitalPin.P14, 0)
+        }
+        
     }
+
 }
