@@ -94,4 +94,14 @@ namespace qcar {
             return -1
         }
     }
+    /**
+    * Turn off all the ZIP LEDs.
+    * You need to call ``show`` to make the changes visible.
+    */
+    //% subcategory="ZIP LEDs"
+    //% blockId="kitronik_smart_greenhouse_display_clear" block="%zipLEDs|clear"
+    //% weight=93 blockGap=8
+    clear(): void {
+        this.buf.fill(0, this.start * 3, this._length * 3);
+    }
 }
