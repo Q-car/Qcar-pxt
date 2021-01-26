@@ -17,12 +17,7 @@ namespace qcar {
         PatrolRight = 1
     }
 
-    export enum LEDswitch {
-        //% blockId="turnOn" block="ON"
-        turnOn = 1,
-        //% blockId="turnOff" block="OFF"
-        turnOff = 0
-    }
+
 
     /**
      * Read ultrasonic sensor.
@@ -77,22 +72,7 @@ namespace qcar {
     }
 
 
-    /**
-     * Turn on/off the LEDs.
-     */
 
-    //% weight=20
-    //% blockId=writeLED block="LEDlight turn |%ledswitch"
-    //% ledswitch.fieldEditor="gridpicker" ledswitch.fieldOptions.columns=2
-    export function writeLED(ledswitch: LEDswitch): void {
-        if (ledswitch == 1) {
-            pins.digitalWritePin(DigitalPin.P13, 1)
-        } else if (ledswitch == 0) {
-            pins.digitalWritePin(DigitalPin.P12, ledswitch)
-        } else {
-            return
-        }
-    }
 
 
 }
