@@ -17,6 +17,13 @@ namespace qcar {
         PatrolRight = 1
     }
 
+    export enum irstatus {
+        //% blockId="iron" block="on"
+        iron = 1,
+        //% blockId="iroff" block="off"
+        iroff = 2
+    }
+
     /**
      * Read ultrasonic sensor.
      */
@@ -69,4 +76,21 @@ namespace qcar {
         }
     }
 
+
+    /**
+     * Enable IR LED.
+     */
+
+    //% weight=20
+    //% blockId=IR_Enable block="Set the infrared status to |%irstatus"
+    //% irstatus.fieldEditor="gridpicker" irstatus.fieldOptions.columns=2 
+    export function IREnable(irstatus: irstatus): number {
+        if (irstatus == irstatus.iron) {
+            pins.digitalWritePin(DigitalPin.P14, 1)
+        } else if (irstatus == irstatus.iroff) {
+            pins.digitalWritePin(DigitalPin.P14, 0)
+        } else {
+            return -1
+        }
+    }
 }
