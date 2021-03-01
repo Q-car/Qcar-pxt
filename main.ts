@@ -1,6 +1,3 @@
-
-let qcarparam = 0
-let qcarparam1 = 1
 enum PingUnit {
     //% block="cm"
     Centimeters,
@@ -10,6 +7,13 @@ enum PingUnit {
 //% weight=0 color=#00BFFF icon="\uf2c4" block="Qcar"
 namespace qcar {
 
+    function write(chipAddress: number, register: number, value: number): void {
+        const buffer = pins.createBuffer(2)
+        buffer[0] = register
+        buffer[1] = value
+        pins.i2cWriteBuffer(chipAddress, buffer, false)
+    }
+    
     export enum Patrol {
         //% blockId="patrolLeft" block="left"
         PatrolLeft = 2,
@@ -17,11 +21,25 @@ namespace qcar {
         PatrolRight = 1
     }
 
+
     export enum irstatus {
         //% blockId="iron" block="on"
         iron = 1,
         //% blockId="iroff" block="off"
         iroff = 2
+    }
+
+    export enum Direction {
+        //% blockId="Go_Foward" block="Go Foward"
+        foward = 1,
+        //% blockId="Go_Back" block="Go Back"
+        back = 2,
+        //% blockId="Turn_Left" block="Turn Left"
+        left = 3,
+        //% blockId="Turn_Right" block="Turn Right"
+        right = 4,
+        //% blockId="Stop" block="Stop"
+        stop = 5
     }
 
     /**
@@ -77,21 +95,175 @@ namespace qcar {
     }
 
 
-    /**
-     * Enable IR LED.
-     */
+   /**
+    * Enable IR LED.
+    */
 
-    //% blockId=IR_Enable block="Set the infrared status to |%irstatus"
-    //% irstatus.fieldEditor="gridpicker" irstatus.fieldOptions.columns=2 
-    //% weight=93 blockGap=8
+   //% blockId=IR_Enable block="Set the infrared status to |%irstatus"
+   //% irstatus.fieldEditor="gridpicker" irstatus.fieldOptions.columns=2 
+   //% weight=93 blockGap=8
 
-    export function IREnable(IRstatus: irstatus): void {
-        if (IRstatus == irstatus.iron) {
-            pins.digitalWritePin(DigitalPin.P14, 1)
-        } else if (IRstatus == irstatus.iroff) {
-            pins.digitalWritePin(DigitalPin.P14, 0)
+   export function IREnable(IRstatus: irstatus): void {
+       if (IRstatus == irstatus.iron) {
+           pins.digitalWritePin(DigitalPin.P14, 1)
+       } else if (IRstatus == irstatus.iroff) {
+           pins.digitalWritePin(DigitalPin.P14, 0)
+       } 
+   }
+
+   /**
+    * Stop the Q-Car
+    */
+
+   //% blockId=Stop_QCar block="Stop the Q-Car"
+   //% weight=94 blockGap=8
+
+   export function Stop(): void {
+
+    // Low byte of onStep
+    write(64, 0x06, 0 & 0xFF)
+    write(64, 0x07, (0 >> 8) & 0x0F)
+    write(64, 0x08, 4095 & 0xFF)
+    write(64, 0x09, (4095 >> 8) & 0x0F)
+        
+    write(64, 0x0A, 0 & 0xFF)
+    write(64, 0x0B, (0 >> 8) & 0x0F)
+    write(64, 0x0C, 4095 & 0xFF)
+    write(64, 0x0D, (4095 >> 8) & 0x0F)
+
+    write(64, 0x0E, 0 & 0xFF)
+    write(64, 0x0E, (0 >> 8) & 0x0F)
+    write(64, 0x10, 4095 & 0xFF)
+    write(64, 0x11, (4095 >> 8) & 0x0F)
+
+    write(64, 0x12, 0 & 0xFF)
+    write(64, 0x13, (0 >> 8) & 0x0F)
+    write(64, 0x14, 4095 & 0xFF)
+    write(64, 0x15, (4095 >> 8) & 0x0F)
+    } 
+
+
+   /**
+    * Contral The Q-Car.
+    */
+
+   //% blockId=Q-Car_Direction block="Let the Q-Car |%Direction"
+   //% Direction.fieldEditor="gridpicker" Direction.fieldOptions.columns=5 
+   //% weight=95 blockGap=8
+
+   export function QCar_Direction(Car_Direction: Direction): void {
+       if (Car_Direction == Direction.foward) {
+           write(64, 0x06, 0 & 0xFF)
+           write(64, 0x07, (0 >> 8) & 0x0F)
+           write(64, 0x08, 4095 & 0xFF)
+           write(64, 0x09, (4095 >> 8) & 0x0F)
+            
+           write(64, 0x0A, 4095 & 0xFF)
+           write(64, 0x0B, (4095 >> 8) & 0x0F)
+           write(64, 0x0C, 0 & 0xFF)
+           write(64, 0x0D, (0 >> 8) & 0x0F)
+
+           write(64, 0x0E, 4095 & 0xFF)
+           write(64, 0x0F, (4095 >> 8) & 0x0F)
+           write(64, 0x10, 0 & 0xFF)
+           write(64, 0x11, (0 >> 8) & 0x0F)
+
+           write(64, 0x12, 0 & 0xFF)
+           write(64, 0x13, (0 >> 8) & 0x0F)
+           write(64, 0x14, 4095 & 0xFF)
+           write(64, 0x15, (4095 >> 8) & 0x0F)
+        } 
+        else if (Car_Direction == Direction.back) {
+            write(64, 0x06, 4095 & 0xFF)
+            write(64, 0x07, (4095 >> 8) & 0x0F)
+            write(64, 0x08, 0 & 0xFF)
+            write(64, 0x09, (0 >> 8) & 0x0F)
+            
+            write(64, 0x0A, 0 & 0xFF)
+            write(64, 0x0B, (0 >> 8) & 0x0F)
+            write(64, 0x0C, 4095 & 0xFF)
+            write(64, 0x0D, (4095 >> 8) & 0x0F)
+
+
+            write(64, 0x0E, 0 & 0xFF)
+            write(64, 0x0F, (0 >> 8) & 0x0F)
+            write(64, 0x10, 4095 & 0xFF)
+            write(64, 0x11, (4095 >> 8) & 0x0F)
+
+            write(64, 0x12, 4095 & 0xFF)
+            write(64, 0x13, (4095 >> 8) & 0x0F)
+            write(64, 0x14, 0 & 0xFF)
+            write(64, 0x15, (0  >> 8) & 0x0F)
+        } 
+        else if (Car_Direction == Direction.left) {
+
+            write(64, 0x06, 0 & 0xFF)
+            write(64, 0x07, (0 >> 8) & 0x0F)
+            write(64, 0x08, 4095 & 0xFF)
+            write(64, 0x09, (4095 >> 8) & 0x0F)
+            
+            write(64, 0x0A, 4095 & 0xFF)
+            write(64, 0x0B, (4095 >> 8) & 0x0F)
+            write(64, 0x0C, 0 & 0xFF)
+            write(64, 0x0D, (0 >> 8) & 0x0F)
+
+
+            write(64, 0x0E, 0 & 0xFF)
+            write(64, 0x0F, (0 >> 8) & 0x0F)
+            write(64, 0x10, 4095 & 0xFF)
+            write(64, 0x11, (4095 >> 8) & 0x0F)
+
+            write(64, 0x12, 4095 & 0xFF)
+            write(64, 0x13, (4095 >> 8) & 0x0F)
+            write(64, 0x14, 0 & 0xFF)
+            write(64, 0x15, (0  >> 8) & 0x0F)
+        
+        } 
+        else if (Car_Direction == Direction.right) {
+
+            write(64, 0x06, 4095 & 0xFF)
+            write(64, 0x07, (4095 >> 8) & 0x0F)
+            write(64, 0x08, 0 & 0xFF)
+            write(64, 0x09, (0 >> 8) & 0x0F)
+            
+            write(64, 0x0A, 0 & 0xFF)
+            write(64, 0x0B, (0 >> 8) & 0x0F)
+            write(64, 0x0C, 4095 & 0xFF)
+            write(64, 0x0D, (4095 >> 8) & 0x0F)
+
+
+            write(64, 0x0E, 4095 & 0xFF)
+            write(64, 0x0F, (4095 >> 8) & 0x0F)
+            write(64, 0x10, 0 & 0xFF)
+            write(64, 0x11, (0 >> 8) & 0x0F)
+    
+            write(64, 0x12, 0 & 0xFF)
+            write(64, 0x13, (0 >> 8) & 0x0F)
+            write(64, 0x14, 4095 & 0xFF)
+            write(64, 0x15, (4095 >> 8) & 0x0F)
+        } 
+        else if (Car_Direction == Direction.stop) {
+
+            // Low byte of onStep
+            write(64, 0x06, 0 & 0xFF)
+            write(64, 0x07, (0 >> 8) & 0x0F)
+            write(64, 0x08, 4095 & 0xFF)
+            write(64, 0x09, (4095 >> 8) & 0x0F)
+            
+            write(64, 0x0A, 0 & 0xFF)
+            write(64, 0x0B, (0 >> 8) & 0x0F)
+            write(64, 0x0C, 4095 & 0xFF)
+            write(64, 0x0D, (4095 >> 8) & 0x0F)
+    
+            write(64, 0x0E, 0 & 0xFF)
+            write(64, 0x0F, (0 >> 8) & 0x0F)
+            write(64, 0x10, 4095 & 0xFF)
+            write(64, 0x11, (4095 >> 8) & 0x0F)
+    
+            write(64, 0x12, 0 & 0xFF)
+            write(64, 0x13, (0 >> 8) & 0x0F)
+            write(64, 0x14, 4095 & 0xFF)
+            write(64, 0x15, (4095 >> 8) & 0x0F)
         } 
     }
-
-
 }
